@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h2>{{ album.name }}</h2>
+  <img src="{{ album.cover.url }}" alt="{{ album.name }}" style="max-width: 300px;">
+  <p>{{ album.description }}</p>
+  <p><strong>Автор:</strong> <a href="{% url 'group_detail' album.group.id %}">{{ album.group }}</a></p>
+  <p><strong>Дата выпуска:</strong> {{ album.release_date }}</p>
+  <h2>Песни в альбоме</h2>
+  <ul>
+    {% for song in songs %}
+      <li><a href="{% url 'song_detail' song.pk %}">{{ song.name }}</a> ({{ song.duration }})</li>
+    {% empty %}
+      <li>Нет песен</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

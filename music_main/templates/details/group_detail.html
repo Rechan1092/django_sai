@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>{{ group.name }}</h2>
+<img src="{{ group.image.url }}" alt="{{ group.name }}" width="300">
+<p>{{ group.description }}</p>
+<p><strong>Дата создания:</strong> {{ group.created_at }}</p>
+
+<h2>Альбомы:</h2>
+<ul>
+    {% for album in group.albums.all %}
+    <li><a href="{% url 'album_detail' album.id %}">{{ album.name }}</a></li>
+    {% empty %}
+    <li>Нет альбомов</li>
+    {% endfor %}
+</ul>
+
+<h2>Песни:</h2>
+<ul>
+    {% for song in group.songs.all %}
+    <li><a href="{% url 'song_detail' song.id %}">{{ song.name }}</a></li>
+    {% empty %}
+    <li>Нет песен</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ member.name }}</h1>
+  <img src="{{ member.photo.url }}" alt="{{ member.name }}" style="max-width: 200px;">
+  <p><strong>Биография:</strong> {{ member.biography }}</p>
+  <p><strong>Роль:</strong> {{ member.role }}</p>
+  <p><strong>Дата рождения:</strong> {{ member.birth_date }}</p>
+  <p><strong>Участник группы:</strong> <a href="{% url 'group_detail' member.group.id %}">{{member.group}}</a></p>
+{% endblock %}

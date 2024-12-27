@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>Последние группы</h2>
+    <ul>
+        {% for group in latest_groups %}
+            <li><a href="{% url 'group_detail' group.id %}">{{ group.name }} ({{ group.created_at }})</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Последние альбомы</h2>
+    <ul>
+        {% for album in latest_albums %}
+            <li><a href="{% url 'album_detail' album.id %}">{{ album.name }} — {{ album.group.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Последние песни</h2>
+    <ul>
+        {% for song in latest_songs %}
+            <li><a href="{% url 'song_detail' song.id %}">{{ song.name }} ({{ song.group.name }})</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Последние участники</h2>
+    <ul>
+        {% for gm in latest_groupmembers %}
+            <li><a href="{% url 'groupmember_detail' gm.id %}">{{ gm.name }} ({{ gm.group.name }})</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

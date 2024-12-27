@@ -1,0 +1,73 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<style>
+    form {
+        margin-bottom: 10px;
+    }
+    input {
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+    }
+    button {
+        background-color: rgb(1, 26, 167);
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<h1>Результаты поиска</h1>
+
+<form method="get" action="{% url 'search' %}">
+    <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Введите запрос" class="form-control"/>
+    <button type="submit" class="btn btn-primary mt-2 btn-purple">Искать</button>
+</form>
+
+<hr>
+
+<!-- Результаты -->
+{% if results.groups or results.albums or results.songs or results.members %}
+    <h2>Найденные результаты:</h2>
+
+    <h3>Группы</h3>
+    <ul>
+        {% for group in results.groups %}
+            <li><a href="{{ group.url }}">{{ group.name }}</a></li>
+        {% empty %}
+            <p>Нет совпадений</p>
+        {% endfor %}
+    </ul>
+
+    <h3>Альбомы</h3>
+    <ul>
+        {% for album in results.albums %}
+            <li><a href="{{ album.url }}">{{ album.name }}</a></li>
+        {% empty %}
+            <p>Нет совпадений</p>
+        {% endfor %}
+    </ul>
+
+    <h3>Песни</h3>
+    <ul>
+        {% for song in results.songs %}
+            <li><a href="{{ song.url }}">{{ song.name }}</a></li>
+        {% empty %}
+            <p>Нет совпадений</p>
+        {% endfor %}
+    </ul>
+
+    <h3>Участники</h3>
+    <ul>
+        {% for member in results.members %}
+            <li><a href="{{ groupmember.url }}">{{ groupmember.name }}</a></li>
+        {% empty %}
+            <p>Нет совпадений</p>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>По вашему запросу ничего не найдено.</p>
+{% endif %}
+{% endblock %}

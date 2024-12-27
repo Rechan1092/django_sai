@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>{{ song.name }}</h1>
+
+{% if song.album %}
+<p><strong>Альбом:</strong> <a href="{% url 'album_detail' song.album.id %}">{{ song.album.name }}</a></p>
+{% endif %}
+
+{% if song.group %}
+<p><strong>Группа:</strong> <a href="{% url 'group_detail' song.group.id %}">{{ song.group.name }}</a></p>
+{% endif %}
+<p><strong>Описание:</strong> {{ song.description }}</p>
+<p><strong>Длительность:</strong> {{ song.duration }}</p>
+<p><strong>Текст песни:</strong> {{ song.lyrics }}</p>
+{% if song.audio_file %}
+<audio controls>
+    <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+{% endif %}
+{% endblock %}

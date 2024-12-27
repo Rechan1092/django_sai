@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MusicPedia</title>
+    <link rel="icon" href="{% static 'favicon.png' %}">
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .cont {
+        width: 90%;
+        max-width: 1280px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили навигации */
+    nav {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        background: #3d5afe;
+        border-radius: 10px;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    li {
+        position: relative;
+    }
+
+    a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 600;
+        transition: color 300ms ease, transform 300ms ease;
+    }
+
+    a:hover {
+        color: #ffca28;
+        transform: scale(1.1);
+    }
+
+    li > a:hover::after {
+        width: 100%;
+    }
+    .content {
+        margin-top: 30px;
+    }
+    .content h1 {
+        font-size: 32px;
+    }
+    .content h2 {
+        margin-top: 20px;
+        font-size: 30px;
+    }
+    .content h3 {
+        font-size: 28px;
+    }
+    .content ul {
+        flex-direction: column;
+        gap: 0;
+    }
+</style>
+
+</head>
+<body>
+    <div class="cont">
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="{% url 'search' %}">Поиск</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

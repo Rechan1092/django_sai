@@ -1,0 +1,9 @@
+.idea/
+__pycache__/
+*.pyc
+db.sqlite3
+media/albums
+media/groups
+media/members
+media/songs
+venv/
